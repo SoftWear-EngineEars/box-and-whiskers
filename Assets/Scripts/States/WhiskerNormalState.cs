@@ -1,34 +1,14 @@
-﻿using UnityEngine;
-
-public class WhiskerNormalState : WhiskerState
+﻿public class WhiskerNormalState : NormalState, IWhiskerState
 {
-    private const float JumpStrength = 8.0f;
-    private const float MovementSpeed = 3.0f;
+    public WhiskerNormalState(Whiskers whiskers) : base(whiskers) { }
 
-    private readonly Rigidbody2D _rigidbody;
-    public WhiskerNormalState(Whiskers whiskers) : base(whiskers)
-    {
-        _rigidbody = Whiskers.GetComponent<Rigidbody2D>();
-    }
-    
-    public override void HandleUp()
-    {
-        _rigidbody.AddForce(new Vector2(0, JumpStrength), ForceMode2D.Impulse);
-        Whiskers.SetState(new WhiskerJumpingState(Whiskers));
-    }
-
-    public override void HandleHorizontal(float amount)
-    {
-        _rigidbody.linearVelocityX = amount * MovementSpeed;
-    }
-
-    public override void HandleShift()
+    public void HandleShift()
     {
         // TODO: join with box
     }
 
-    public override void AdvanceState()
+    protected override JumpingState JumpState()
     {
-        // stay in Normal
+        return new WhiskerJumpingState((Whiskers)Player);
     }
 }

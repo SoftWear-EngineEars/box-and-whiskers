@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class Player<TS> : MonoBehaviour where TS : IState
+public abstract class Player : MonoBehaviour
 {
-    protected TS State { get; private set; }
+    protected IState State { get; private set; }
 
     protected InputAction UpAction;
     protected InputAction HorizontalAction;
+
+    [SerializeField] private float jumpStrength;
+    [SerializeField] private float movementSpeed;
 
     public virtual void Update()
     {
@@ -21,8 +24,18 @@ public abstract class Player<TS> : MonoBehaviour where TS : IState
         State.AdvanceState();
     }
 
-    public void SetState(TS state)
+    public void SetState(IState state)
     {
         State = state;
+    }
+
+    public float GetJumpStrength()
+    {
+        return jumpStrength;
+    }
+
+    public float GetMovementSpeed()
+    {
+        return movementSpeed;
     }
 }

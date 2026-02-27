@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Whiskers : Player<WhiskerState>
+public class Whiskers : Player
 {
     private InputAction _shiftAction;
     private void Start()
@@ -20,7 +20,7 @@ public class Whiskers : Player<WhiskerState>
 
         if (_shiftAction.triggered)
         {
-            State.HandleShift();
+            ((IWhiskerState)State).HandleShift();
         }
     }
 }
