@@ -133,7 +133,7 @@
                 {
                     "name": "",
                     "id": "3b931250-b068-453c-a0e2-ac82bc2f682f",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
