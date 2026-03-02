@@ -23,5 +23,15 @@ public class Whiskers : Player
             ((IWhiskerState)State).HandleShift();
         }
     }
+
+    public void EnterBox()
+    {
+        // TODO
+    }
+
+    public void ExitBox()
+    {
+        // TODO
+    }
 }
     

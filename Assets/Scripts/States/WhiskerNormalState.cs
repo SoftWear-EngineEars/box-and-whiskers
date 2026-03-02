@@ -7,8 +7,4 @@
         // TODO: join with box
     }
 
-    protected override JumpingState JumpState()
-    {
-        return new WhiskerJumpingState((Whiskers)Player);
-    }
 }

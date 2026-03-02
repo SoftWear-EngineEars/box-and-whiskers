@@ -1,6 +1,6 @@
-public interface IState
+﻿public interface IState
 {
+    Player Player { get; }
     void HandleUp();
     void HandleHorizontal(float amount);
-    void AdvanceState();
 }

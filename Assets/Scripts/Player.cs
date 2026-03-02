@@ -20,8 +20,6 @@ public abstract class Player : MonoBehaviour
         }
         
         State.HandleHorizontal(HorizontalAction.ReadValue<float>());
-        
-        State.AdvanceState();
     }
 
     public void SetState(IState state)

@@ -1,4 +1,10 @@
-﻿public interface IWhiskerState
+﻿public interface IWhiskerState : IState
 {
-    public void HandleShift();
+    public void HandleShift()
+    {
+        var whiskers = (Whiskers)Player;
+        
+        whiskers.EnterBox();
+        whiskers.SetState(new WhiskerCombinedState(whiskers));
+    }
 }
