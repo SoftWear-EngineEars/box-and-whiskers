@@ -1,17 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class NormalState : PlayerState, ICanMove, ICanJump
+public class NormalState : PlayerState
 {
     public NormalState(Player player) : base(player) { }
 
-    public IState JumpState()
+    public override void Start()
     {
-        return new JumpingState(Player);
-    }
-
-    public void AdvanceState()
-    {
-        // stay in Normal
+        Player.UpAction.Enable();
+        Player.HorizontalAction.Disable();
     }
 }

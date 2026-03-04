@@ -4,25 +4,31 @@ using UnityEngine.InputSystem;
 
 public abstract class Player : MonoBehaviour
 {
-    protected IState State { get; private set; }
+    protected PlayerState State { get; private set; }
 
-    protected InputAction UpAction;
-    protected InputAction HorizontalAction;
+    public InputAction UpAction { get; protected set; }
+    public InputAction HorizontalAction { get; protected set;  }
 
     [SerializeField] private float jumpStrength;
     [SerializeField] private float movementSpeed;
 
-    public virtual void Update()
+    [SerializeField] private Transform groundChecker;
+
+    private BoxCollider2D _collider;
+    private LayerMask _jumpable;
+    
+    protected virtual void Start()
     {
-        if (UpAction.triggered)
-        {
-            State.HandleUp();
-        }
-        
-        State.HandleHorizontal(HorizontalAction.ReadValue<float>());
+        _jumpable = LayerMask.GetMask("Jumpable");
+        _collider = GetComponent<BoxCollider2D>();
     }
 
-    public void SetState(IState state)
+    public virtual void Update()
+    {
+        State.Update();
+    }
+
+    public void SetState(PlayerState state)
     {
         State = state;
     }
@@ -35,5 +41,19 @@ public abstract class Player : MonoBehaviour
     public float GetMovementSpeed()
     {
         return movementSpeed;
+    }
+
+    public bool CanJump()
+    {
+        const float maxGroundDistance = 0.1f;
+        
+        var hit = Physics2D.BoxCast(groundChecker.position, new Vector2(_collider.size.x, maxGroundDistance), 0, Vector2.down, maxGroundDistance, _jumpable);
+        return hit.collider != null && hit.collider.gameObject != gameObject;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundChecker.position, new Vector2(_collider.size.x, 0.1f));
     }
 }

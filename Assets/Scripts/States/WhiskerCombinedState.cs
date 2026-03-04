@@ -1,14 +1,12 @@
-﻿public class WhiskerCombinedState : PlayerState, ICanJump, IWhiskerState
-{
-    public WhiskerCombinedState(Whiskers whiskers) : base(whiskers) { }
-    public IState JumpState()
-    {
-        return new WhiskerCombinedJumpingState((Whiskers)Player);
-    }
+﻿using UnityEngine;
 
-    public void HandleHorizontal(float amount)
+public class WhiskerCombinedState : PlayerState
+{
+    private readonly Box _box;
+
+    public WhiskerCombinedState(Whiskers whiskers, Box box) : base(whiskers)
     {
-        // Cannot move while in box
+        _box = box;
     }
 
     public void HandleShift()
@@ -16,6 +14,17 @@
         var whiskers = (Whiskers)Player;
         
         whiskers.ExitBox();
-        whiskers.SetState(new JumpingState(whiskers));
+        whiskers.SetState(new WhiskerNormalState(whiskers));
+    }
+
+    public override void Start()
+    {
+        Player.HorizontalAction.Enable();
+        Player.UpAction.Disable();
+    }
+
+    public override void Jump()
+    {
+        Rigidbody.AddForce(new Vector2(0, _box.GetJumpStrength()), ForceMode2D.Impulse);
     }
 }

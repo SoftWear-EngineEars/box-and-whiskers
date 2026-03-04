@@ -1,9 +1,10 @@
-﻿public class BoxCombinedState : PlayerState, ICanMove
+﻿public class BoxCombinedState : PlayerState
 {
     public BoxCombinedState(Box box) : base(box) { }
 
-    public void HandleUp()
+    public override void Start()
     {
-        // Do nothing
+        Player.UpAction.Disable();
+        Player.HorizontalAction.Enable();
     }
 }

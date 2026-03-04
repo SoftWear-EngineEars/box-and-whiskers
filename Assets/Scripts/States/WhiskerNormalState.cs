@@ -1,10 +1,10 @@
-﻿public class WhiskerNormalState : NormalState, IWhiskerState
+﻿public class WhiskerNormalState : WhiskerState
 {
     public WhiskerNormalState(Whiskers whiskers) : base(whiskers) { }
 
-    public void HandleShift()
+    public override void Start()
     {
-        // TODO: join with box
+        Player.UpAction.Enable();
+        Player.HorizontalAction.Enable();
     }
-
 }
