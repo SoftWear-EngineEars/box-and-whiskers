@@ -50,10 +50,4 @@ public abstract class Player : MonoBehaviour
         var hit = Physics2D.BoxCast(groundChecker.position, new Vector2(_collider.size.x, maxGroundDistance), 0, Vector2.down, maxGroundDistance, _jumpable);
         return hit.collider != null && hit.collider.gameObject != gameObject;
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(groundChecker.position, new Vector2(_collider.size.x, 0.1f));
-    }
 }
