@@ -22,6 +22,7 @@ public abstract class WhiskerState : PlayerState
     public virtual void HandleShift() 
     {
         var box = Whiskers.EnterBox();
-        Whiskers.SetState(new WhiskerCombinedState(Whiskers, box));
+        if (box != null)
+            Whiskers.SetState(new WhiskerCombinedState(Whiskers, box));
     }
 }

@@ -31,6 +31,7 @@ public abstract class Player : MonoBehaviour
     public void SetState(PlayerState state)
     {
         State = state;
+        state.Start();
     }
 
     public float GetJumpStrength()
