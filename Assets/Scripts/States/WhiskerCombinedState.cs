@@ -30,6 +30,8 @@ public class WhiskerCombinedState : WhiskerState
 
         _collider.enabled = false;
         _whiskersRigidbody.bodyType = RigidbodyType2D.Kinematic;
+        _whiskersRigidbody.linearVelocity = Vector2.zero;
+        _whiskersRigidbody.totalForce = Vector2.zero;
         
         Whiskers.transform.SetParent(_box.transform);
         Whiskers.transform.position = _box.transform.position + (Vector3.up * offset);
@@ -50,13 +52,12 @@ public class WhiskerCombinedState : WhiskerState
         
         Whiskers.SetState(new WhiskerNormalState(Whiskers));
         
-        _whiskersRigidbody.AddForce(new Vector2(0, Whiskers.GetJumpStrength()), ForceMode2D.Impulse);
-        
         CombinationEventNotifier.Instance.NotifySubscribers(CombinationEvent.Uncombine);
     }
 
     public override void Jump()
     {
-        Rigidbody.AddForce(new Vector2(0, _box.GetJumpStrength()), ForceMode2D.Impulse);
+        if (_box.CanJump())
+            Rigidbody.AddForce(new Vector2(0, _box.GetJumpStrength()), ForceMode2D.Impulse);
     }
 }
