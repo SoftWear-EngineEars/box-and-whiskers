@@ -13,14 +13,14 @@ public class Button : MonoBehaviour
     private float _yMax;
     private float _velocity;
     
-    private Vector2 _platformStartPoint;
-    private Vector2 _platformEndPoint;
+    private Vector3 _platformStartPoint;
+    private Vector3 _platformEndPoint;
     
     
     private void Start()
     {
         _platformStartPoint = platform.transform.position;
-        _platformEndPoint = (Vector2)platform.transform.position + platformEndOffset;
+        _platformEndPoint = platform.transform.position + (Vector3)platformEndOffset;
 
         _yMax = transform.position.y;
         _yMin = transform.position.y - GetComponent<BoxCollider2D>().size.y;
@@ -29,9 +29,9 @@ public class Button : MonoBehaviour
     private void Update()
     {
         transform.position =
-            new Vector2(transform.position.x, Math.Clamp(transform.position.y + _velocity, _yMin, _yMax));
+            new Vector3(transform.position.x, Math.Clamp(transform.position.y + _velocity, _yMin, _yMax), transform.position.z);
 
-        platform.transform.position = Vector2.Lerp(_platformEndPoint, _platformStartPoint, 
+        platform.transform.position = Vector3.Lerp(_platformEndPoint, _platformStartPoint, 
             (transform.position.y - _yMin) / (_yMax - _yMin));
     }
 
