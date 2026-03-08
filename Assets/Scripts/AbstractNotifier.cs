@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class AbstractNotifier<T> : Singleton<AbstractNotifier<T>>, INotifier<T>
+public abstract class AbstractNotifier<T> : Singleton<AbstractNotifier<T>>, INotifier<T>
 {
     private readonly HashSet<ISubscriber<T>> _subscribers = new();
     
