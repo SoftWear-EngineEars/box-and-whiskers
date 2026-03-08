@@ -1,8 +1,19 @@
 ﻿using UnityEngine;
 
-public class KeyIdleState : KeyAndDoorState
+public class KeyIdleState : KeyAndDoorState, IDependency<INotifier<KeyCollectEvent>>
 {
-    public KeyIdleState(KeyAndDoor keyAndDoor) : base(keyAndDoor) { }
+    public KeyIdleState(KeyAndDoor keyAndDoor) : base(keyAndDoor)
+    {
+        // see note to WhiskerCombinedState's constructor for why dependency is set here
+        SetDependency(KeyCollectEventNotifier.Instance);
+    }
+
+    private INotifier<KeyCollectEvent> _keyCollectEventNotifier;
+
+    public void SetDependency(INotifier<KeyCollectEvent> dependency)
+    {
+        _keyCollectEventNotifier = dependency;
+    }
 
     public override void HandleCombinationEvent(CombinationEvent combinationEvent)
     {
@@ -25,6 +36,7 @@ public class KeyIdleState : KeyAndDoorState
         if (whiskers == null)
             return;
         
+        _keyCollectEventNotifier.NotifySubscribers(new KeyCollectEvent());
         KeyAndDoor.SetState(new KeyFollowState(KeyAndDoor, whiskers));
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Box : Player, ISubscriber<CombinationEvent>
 {
+    public INotifier<CombinationEvent> Notifier { get; set; } 
+
     protected override void Start()
     {
         base.Start();
@@ -10,7 +12,7 @@ public class Box : Player, ISubscriber<CombinationEvent>
         UpAction = InputSystem.actions.FindAction("BoxUp");
         HorizontalAction = InputSystem.actions.FindAction("BoxL/R");
 
-        CombinationEventNotifier.Instance.RegisterSubscriber(this);
+        Notifier.RegisterSubscriber(this);
         
         SetState(new BoxNormalState(this));
     }
