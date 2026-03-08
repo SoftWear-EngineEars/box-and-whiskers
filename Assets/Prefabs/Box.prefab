@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf399a3081fc4e43934f0d5fcb6ef254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Box
-  jumpStrength: 2
+  jumpStrength: 4
   movementSpeed: 3
   groundChecker: {fileID: 7216531600548893738}
 --- !u!1 &5715486685453453497
