@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DependencyInjector : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         var objects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
         
