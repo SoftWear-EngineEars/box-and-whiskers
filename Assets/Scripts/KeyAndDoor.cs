@@ -6,11 +6,13 @@ public class KeyAndDoor : Item, ISubscriber<CombinationEvent>
     [SerializeField] private GameObject key;
     [SerializeField] private GameObject door;
 
+    public INotifier<CombinationEvent> Notifier { get; set; }
+
     private void Start()
     {
         SetState(new KeyIdleState(this));
         
-        CombinationEventNotifier.Instance.RegisterSubscriber(this);
+        Notifier.RegisterSubscriber(this);
     }
 
     public void ReceiveEvent(CombinationEvent message)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WhiskerCombinedState : WhiskerState
+public class WhiskerCombinedState : WhiskerState, IDependency<INotifier<CombinationEvent>>
 {
     private readonly Box _box;
 
@@ -11,6 +11,8 @@ public class WhiskerCombinedState : WhiskerState
     private readonly BoxCollider2D _collider;
     private readonly Rigidbody2D _whiskersRigidbody;
 
+    private INotifier<CombinationEvent> _combinationEventNotifier;
+
     public WhiskerCombinedState(Whiskers whiskers, Box box) : base(whiskers)
     {
         _box = box;
@@ -19,6 +21,10 @@ public class WhiskerCombinedState : WhiskerState
         _spriteRenderer = Whiskers.GetComponent<SpriteRenderer>();
         _collider = Whiskers.GetComponent<BoxCollider2D>();
         _whiskersRigidbody = Whiskers.GetComponent<Rigidbody2D>();
+        
+        // need to set dependency since dependency injector can't inject at creation
+        // done in constructor so that during testing it can be reset before calling Start()
+        SetDependency(CombinationEventNotifier.Instance);
     }
 
     public override void Start()
@@ -37,8 +43,7 @@ public class WhiskerCombinedState : WhiskerState
         Whiskers.transform.position = _box.transform.position + (Vector3.up * offset);
         _spriteRenderer.sprite = _combinedSprite;
         
-        CombinationEventNotifier.Instance.NotifySubscribers(CombinationEvent.Combine);
-
+        _combinationEventNotifier.NotifySubscribers(CombinationEvent.Combine);
     }
     
     public override void HandleShift()
@@ -52,12 +57,17 @@ public class WhiskerCombinedState : WhiskerState
         
         Whiskers.SetState(new WhiskerNormalState(Whiskers));
         
-        CombinationEventNotifier.Instance.NotifySubscribers(CombinationEvent.Uncombine);
+        _combinationEventNotifier.NotifySubscribers(CombinationEvent.Uncombine);
     }
 
     public override void Jump()
     {
         if (_box.CanJump())
             Rigidbody.AddForce(new Vector2(0, _box.GetJumpStrength()), ForceMode2D.Impulse);
+    }
+    
+    public void SetDependency(INotifier<CombinationEvent> dependency)
+    {
+        _combinationEventNotifier = dependency;
     }
 }

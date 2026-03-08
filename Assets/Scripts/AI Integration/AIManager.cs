@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace AI_Integration
 {
-    public class AIManager : Singleton<AIManager>
+    public class AIManager : Singleton<AIManager>, IAIManager
     {
-        public enum DialogueType { StartGame = 0, CollectKey = 1 }
-
         private readonly List<string> _prompts = new()
         {
             "Cat in a game saying something at the beginning of a multiplayer platformer level kinda funny short one-liner. The second player is a cardboard box. Don't give me a list or anything, just the one line---say nothing more than the one line.",
