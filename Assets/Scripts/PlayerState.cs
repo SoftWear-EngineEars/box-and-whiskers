@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class PlayerState 
 {
     public Player Player { get; }
-    public Rigidbody2D Rigidbody { get; }
+    
+    protected Rigidbody2D Rigidbody;
 
     public PlayerState(Player player)
     {

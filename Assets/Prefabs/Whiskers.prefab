@@ -213,3 +213,4 @@ MonoBehaviour:
   jumpStrength: 8
   movementSpeed: 3
   groundChecker: {fileID: 8359882738166846088}
+  box: {fileID: 0}
