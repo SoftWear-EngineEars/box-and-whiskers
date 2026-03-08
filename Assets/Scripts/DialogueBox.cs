@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AI_Integration;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<K
 
     public INotifier<KeyCollectEvent> Notifier { get; set; }
     private IAIManager _aiManager;
+
+    private Queue<string> _messageQueue = new();
 
     private void Start()
     {
@@ -24,13 +27,28 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<K
 
     public async void Play(DialogueType type)
     {
-        SetChildrenActive(true);
         var aiText = await _aiManager.Request(type);
         aiText = aiText.Replace("\"", "").Replace("*", "");
-        StartCoroutine(undertaleText.TypeTextRoutine("*  " + aiText, Hide));
+        if (_messageQueue.Count == 0)
+            PlayText(aiText);
+        _messageQueue.Enqueue(aiText);
     }
 
-    public void Hide()
+    private void PlayText(string text)
+    {
+        SetChildrenActive(true);
+        StartCoroutine(undertaleText.TypeTextRoutine("*  " + text, () => { Hide(); PlayNextItem(); }));
+    }
+
+    private void PlayNextItem()
+    {
+        if (_messageQueue.Count == 0)
+            return;
+        
+        PlayText(_messageQueue.Dequeue());
+    }
+
+    private void Hide()
     {
         undertaleText.Clear();
         SetChildrenActive(false);
