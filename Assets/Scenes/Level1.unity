@@ -1246,6 +1246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117949450}
   - component: {fileID: 2117949449}
+  - component: {fileID: 2117949452}
   - component: {fileID: 2117949451}
   m_Layer: 0
   m_Name: Singleton
@@ -1293,6 +1294,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4be62e5701f3f4697bd89d53cc4da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI_Integration.AIManager
+--- !u!114 &2117949452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117949448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cacacc04a114ac2831fb1bfe94b1945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyCollectEventNotifier
 --- !u!1001 &685359618033669072
 PrefabInstance:
   m_ObjectHideFlags: 0

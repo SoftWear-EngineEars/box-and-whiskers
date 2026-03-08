@@ -1,12 +1,19 @@
+using System;
 using AI_Integration;
 using UnityEngine;
 
-public class DialogueBox : MonoBehaviour, IDependency<IAIManager>
+public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<KeyCollectEvent>
 {
     [SerializeField] private UndertaleText undertaleText;
     [SerializeField] private GameObject[] children;
 
+    public INotifier<KeyCollectEvent> Notifier { get; set; }
     private IAIManager _aiManager;
+
+    private void Start()
+    {
+        Notifier.RegisterSubscriber(this);
+    }
 
     public void SetDependency(IAIManager dependency)
     {
@@ -25,6 +32,7 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>
 
     public void Hide()
     {
+        undertaleText.Clear();
         SetChildrenActive(false);
     }
 
@@ -32,5 +40,10 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>
     {
         foreach (var child in children)
             child.SetActive(active);
+    }
+
+    public void ReceiveEvent(KeyCollectEvent message)
+    {
+        Play(DialogueType.CollectKey);
     }
 }

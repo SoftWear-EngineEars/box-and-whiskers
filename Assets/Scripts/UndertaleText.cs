@@ -25,4 +25,9 @@ public class UndertaleText : MonoBehaviour
         yield return new WaitForSeconds(2f);
         onComplete?.Invoke();
     }
+
+    public void Clear()
+    {
+        textComponent.text = "";
+    }
 }
