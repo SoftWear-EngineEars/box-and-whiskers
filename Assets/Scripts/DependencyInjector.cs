@@ -15,6 +15,11 @@ public class DependencyInjector : MonoBehaviour
             dependency.SetDependency(CombinationEventNotifier.Instance);
         }
 
+        foreach (var dependency in objects.OfType<IDependency<INotifier<KeyCollectEvent>>>())
+        {
+            dependency.SetDependency(KeyCollectEventNotifier.Instance);
+        }
+
         foreach (var dependency in objects.OfType<IDependency<IAIManager>>())
         {
             dependency.SetDependency(AIManager.Instance);
