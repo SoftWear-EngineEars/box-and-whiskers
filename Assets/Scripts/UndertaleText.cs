@@ -14,6 +14,7 @@ public class UndertaleText : MonoBehaviour
 
     public IEnumerator TypeTextRoutine(string text, System.Action onComplete = null)
     {
+        StopAllCoroutines();
         textComponent.text = "";
         foreach (char c in text)
         {

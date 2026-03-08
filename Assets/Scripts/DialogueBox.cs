@@ -11,12 +11,8 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>
     public void SetDependency(IAIManager dependency)
     {
         _aiManager = dependency;
-        Play(DialogueType.StartGame);
-    }
-
-    private void Start()
-    {
         SetChildrenActive(false);
+        Play(DialogueType.StartGame);
     }
 
     public async void Play(DialogueType type)

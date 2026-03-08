@@ -175,50 +175,6 @@ MonoBehaviour:
   - {fileID: 1629262357}
   - {fileID: 902422986}
   - {fileID: 1594213963}
---- !u!1 &117650081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 117650083}
-  - component: {fileID: 117650082}
-  m_Layer: 0
-  m_Name: AITest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &117650082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117650081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6570b80b765eafe4e83ae3020b588016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AITest
---- !u!4 &117650083
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117650081}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 317.11453, y: 110.65208, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,8 +1507,8 @@ SceneRoots:
   - {fileID: 1584069977}
   - {fileID: 1946205002}
   - {fileID: 1419556485}
-  - {fileID: 117650083}
   - {fileID: 685359618033669072}
-  - {fileID: 823375542}
-  - {fileID: 1004927018}
   - {fileID: 5498656634308357179}
+  - {fileID: 732865809}
+  - {fileID: 588273810}
+  - {fileID: 3325789993963364431}
