@@ -15,6 +15,7 @@ public class DialogueBox : MonoBehaviour
     {
         SetChildrenActive(true);
         var aiText = await AIManager.Instance.Request(type);
+        aiText = aiText.Replace("\"", "").Replace("*", "");
         StartCoroutine(undertaleText.TypeTextRoutine("*  " + aiText, Hide));
     }
 
