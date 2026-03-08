@@ -12,6 +12,7 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<K
     private IAIManager _aiManager;
 
     private Queue<string> _messageQueue = new();
+    private bool isPlaying = false;
 
     private void Start()
     {
@@ -29,22 +30,26 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<K
     {
         var aiText = await _aiManager.Request(type);
         aiText = aiText.Replace("\"", "").Replace("*", "");
-        if (_messageQueue.Count == 0)
-            PlayText(aiText);
         _messageQueue.Enqueue(aiText);
+        if (!isPlaying)
+            PlayNextItem();
     }
 
     private void PlayText(string text)
     {
         SetChildrenActive(true);
+        isPlaying = true;
         StartCoroutine(undertaleText.TypeTextRoutine("*  " + text, () => { Hide(); PlayNextItem(); }));
     }
 
     private void PlayNextItem()
     {
         if (_messageQueue.Count == 0)
+        {
+            isPlaying = false;
             return;
-        
+        }
+
         PlayText(_messageQueue.Dequeue());
     }
 
