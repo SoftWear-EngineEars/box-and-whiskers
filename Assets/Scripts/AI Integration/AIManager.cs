@@ -7,17 +7,20 @@ namespace AI_Integration
 {
     public class AIManager : Singleton<AIManager>, IAIManager
     {
+        private readonly string BasePrompt =
+            "Box and Whiskers is a two-player, cooperative platformer game where the two characters are 'Whiskers', a talking cat, and 'Box', a sentient cardboard box. The goal of the game is to beat the level, optionally as fast as possible. Below is a situation that has just happened in the game. Please write a short, slightly-funny one-liner that the cat will say in the given context. Only include the one-liner. Do not include a list. Do not include markdown or LaTeX formatting. Do not include quotation marks.\n \nThe context is: ";
+        
         private readonly List<string> _prompts = new()
         {
-            "Cat in a game saying something at the beginning of a multiplayer platformer level kinda funny short one-liner. The second player is a cardboard box. Don't give me a list or anything, just the one line---say nothing more than the one line.",
-            "A cat saying a silly one-liner after it collected a key required to open the exit door. Don't give me a list or anything, just the one line---say nothing more than the one line."
+            "The level has just started.",
+            "The cat has just collected the key necessary to complete the level."
         };
 
         private readonly GroqAIController _controller = new();
 
         public Task<string> Request(DialogueType type)
         {
-            return _controller.Ask(_prompts[(int)type]);
+            return _controller.Ask(BasePrompt + _prompts[(int)type]);
         }
     }
 }
