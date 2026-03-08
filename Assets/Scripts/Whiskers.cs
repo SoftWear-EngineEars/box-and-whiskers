@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class Whiskers : Player
 {
     public InputAction ShiftAction { get; private set; }
-    
 
     [SerializeField] private Box box;
     protected override void Start()
