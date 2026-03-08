@@ -1820,11 +1820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6914883878748610764, guid: 20927c16bb2f71d42acd795460890986, type: 3}
       propertyPath: upSpeed
-      value: 0.0007
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6914883878748610764, guid: 20927c16bb2f71d42acd795460890986, type: 3}
       propertyPath: pressSpeed
-      value: 0.0007
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6914883878748610764, guid: 20927c16bb2f71d42acd795460890986, type: 3}
       propertyPath: platformEndOffset.x
