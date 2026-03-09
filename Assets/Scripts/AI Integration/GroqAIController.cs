@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AI_Integration
 {
-    public class GroqAIController
+    public class GroqAIController : IGroqAIController
     {
         private readonly string _url = "https://api.groq.com/openai/v1/chat/completions";
         private readonly string _apiKey;
