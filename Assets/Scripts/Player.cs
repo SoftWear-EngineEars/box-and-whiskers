@@ -84,7 +84,7 @@ public abstract class Player : MonoBehaviour, IUsesDataCenter
             
             if (currentScene.buildIndex == 3) // level 3
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/Win");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/WinScreen");
             }
         }
     }
