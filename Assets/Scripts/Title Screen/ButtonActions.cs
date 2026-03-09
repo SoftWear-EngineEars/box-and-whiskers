@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonActions : MonoBehaviour, IUsesDataCenter
+public class TitleButtonActions : MonoBehaviour, IUsesDataCenter
 {
     private IDataCenter _DataCenter;
 

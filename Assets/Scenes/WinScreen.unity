@@ -302,9 +302,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 157389398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dffd343e0a27d6243a1b53038d8b2575, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ad31bb4fc3d4b34ab433d3f6ba54b3f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonActions
+  m_EditorClassIdentifier: Assembly-CSharp::WinButtonActions
 --- !u!1 &167012239
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,8 +427,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 157389400}
-        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
-        m_MethodName: LoadLevel
+        m_TargetAssemblyTypeName: WinButtonActions, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1071,7 +1071,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 157389400}
-        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_TargetAssemblyTypeName: WinButtonActions, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
