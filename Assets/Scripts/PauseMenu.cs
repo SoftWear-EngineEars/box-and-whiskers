@@ -24,4 +24,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(1); // title screen
+    }
 }

@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : MonoBehaviour, IUsesDataCenter
 {
 
     private IDataCenter _DataCenter;
