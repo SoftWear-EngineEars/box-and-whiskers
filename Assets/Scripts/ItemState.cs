@@ -1,13 +1,7 @@
 ﻿using UnityEngine;
 
-public abstract class ItemState
+public abstract class ItemState : IItemState
 {
-    public ItemState(Item item)
-    {
-        Item = item;
-    }
-    
-    protected Item Item;
     public abstract void Update();
 
     public abstract void Start();
