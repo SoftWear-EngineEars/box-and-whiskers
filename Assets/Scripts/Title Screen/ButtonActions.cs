@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class TitleButtonActions : MonoBehaviour, IUsesDataCenter
 {
     private IDataCenter _DataCenter;
+    [SerializeField] private SaveManager saveManager;
 
     public void SetDependency(IDataCenter DataCenter)
     {
@@ -22,6 +23,7 @@ public class TitleButtonActions : MonoBehaviour, IUsesDataCenter
 
     public void LoadFromSave()
     {
-        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel)); // Should change with the addition of other levels
+        saveManager.Load();
+        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel));
     }
 }

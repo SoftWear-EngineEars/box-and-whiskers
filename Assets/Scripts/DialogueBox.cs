@@ -8,22 +8,21 @@ public class DialogueBox : MonoBehaviour, IDependency<IAIManager>, ISubscriber<K
     [SerializeField] private UndertaleText undertaleText;
     [SerializeField] private GameObject[] children;
 
-    public INotifier<KeyCollectEvent> Notifier { get; set; }
     private IAIManager _aiManager;
 
     private Queue<string> _messageQueue = new();
     private bool isPlaying = false;
-
-    private void Start()
-    {
-        Notifier.RegisterSubscriber(this);
-    }
 
     public void SetDependency(IAIManager dependency)
     {
         _aiManager = dependency;
         SetChildrenActive(false);
         Play(DialogueType.StartGame);
+    }
+
+    public void SetDependency(INotifier<KeyCollectEvent> dependency)
+    {
+        dependency.RegisterSubscriber(this);
     }
 
     public async void Play(DialogueType type)

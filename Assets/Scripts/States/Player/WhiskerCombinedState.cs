@@ -29,7 +29,7 @@ public class WhiskerCombinedState : WhiskerState, IDependency<INotifier<Combinat
 
     public override void Start()
     {
-        const float offset = 0.417f;
+        const float offset = 0f;
         
         Whiskers.HorizontalAction.Disable();
         Whiskers.UpAction.Enable();

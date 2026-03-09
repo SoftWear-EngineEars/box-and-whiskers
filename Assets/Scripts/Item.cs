@@ -3,18 +3,18 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour 
 {
-    protected ItemState ItemState;
-    private void Update()
+    protected IItemState ItemState;
+    public void Update()
     {
         ItemState.Update();
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         ItemState.HandleCollision(other);
     }
 
-    public void SetState(ItemState state)
+    public void SetState(IItemState state)
     {
         ItemState = state;
         state.Start();
