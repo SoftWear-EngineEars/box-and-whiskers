@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DataCenter : MonoBehaviour, IDataCenter
 {
-    [SerializeField] private double[] levelTimes = new double[3];
-    [SerializeField] private int currentLevel = 0;
+    [SerializeField] private double[] levelTimes = {9999.99, 9999.99, 9999.99};
+    [SerializeField] private int currentLevel = 1;
 
 
     public double[] LevelTimes { get => levelTimes; set => levelTimes = value; }

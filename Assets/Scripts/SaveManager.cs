@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
     public class SaveData
     {
         public double[] levelTimes = {9999.99, 9999.99, 9999.99};
-        public int currentLevel = 0;
+        public int currentLevel = 1;
     }
 
     private SaveData GameData()
