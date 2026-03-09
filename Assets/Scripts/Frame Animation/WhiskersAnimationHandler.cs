@@ -8,15 +8,10 @@ public class WhiskersAnimationHandler : PlayerAnimationHandler, ISubscriber<Comb
 
     public void ReceiveEvent(CombinationEvent message)
     {
-        UnityEngine.Debug.Log("Received combination event: " + message.GetType().Name);
         SpriteAnimation state = Player.GetAnimationState();
 
         ((WhiskersSpriteAnimation)state).HandleMerge();
         string spriteName = state.GetSprite();
-
-        UnityEngine.Debug.Log("Handling merge animation frame");
-        UnityEngine.Debug.Log("Next state: " + state.GetNextState().GetType().Name);
-        UnityEngine.Debug.Log("Current state: " + state.GetType().Name);
 
         Player.SetAnimationState(state.GetNextState());
         SetSprite(spriteName);
@@ -40,7 +35,6 @@ public class WhiskersAnimationHandler : PlayerAnimationHandler, ISubscriber<Comb
         {
             // Get velocity of whiskers's parent
             float movementSpeed = ((Whiskers)Player).EnterBox().GetComponent<Rigidbody2D>().linearVelocity.x;
-            UnityEngine.Debug.Log("Whiskers is merging. Movement speed: " + movementSpeed);
             if (movementSpeed < 0)
             {
                 HandleLeft();
