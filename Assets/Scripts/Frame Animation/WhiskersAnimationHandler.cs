@@ -30,7 +30,12 @@ public class WhiskersAnimationHandler : PlayerAnimationHandler, ISubscriber<Comb
 
     public override void Update()
     {
-        UnityEngine.Debug.Log("Animation state: " + Player.GetAnimationState().GetType().Name);
+        if (Player.GetAnimationState() == null)
+        {
+            Player.SetAnimationState(new WhiskersIdleAnimation(Player, 0));
+        }
+        Player.GetAnimationState().UpdateAnimation();
+
         if (Player.GetAnimationState() is WhiskersMergeAnimation)
         {
             // Get velocity of whiskers's parent
@@ -44,6 +49,8 @@ public class WhiskersAnimationHandler : PlayerAnimationHandler, ISubscriber<Comb
             {
                 HandleRight();
             }
+
+            UpdateSprite();
         }
         else
         {

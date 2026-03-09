@@ -6,7 +6,7 @@ public class AnimationFrameManager : MonoBehaviour, IAnimationFrameSubject
 {
     private readonly List<IAnimationFrameObserver> _observers = new List<IAnimationFrameObserver>();
     [SerializeField] private int frame = 0;
-    [SerializeField] private int fps = 10;
+    [SerializeField] private int fps = 8;
 
     public void SendMessage()
     {

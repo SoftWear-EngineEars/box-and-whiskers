@@ -40,23 +40,27 @@ public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObs
         {
             HandleRight();
         }
+
+        UpdateSprite();
+    }
+
+    protected void UpdateSprite()
+    {
+        SpriteAnimation state = Player.GetAnimationState();
+
+        string spriteName = state.GetSprite();
+
+        Player.SetAnimationState(state.GetNextState());
+        SetSprite(spriteName); 
     }
 
     public void OnAnimationFrame(int frame)
     {
-        SpriteAnimation state = Player.GetAnimationState();
-
-        state.OnAnimationFrame(frame);
-        string spriteName = state.GetSprite();
-
-        if (state is WhiskersMergeAnimation)
+        if (Player.GetAnimationState() != null)
         {
-            UnityEngine.Debug.Log("Handling merge animation frame");
-            UnityEngine.Debug.Log("Next state: " + state.GetNextState().GetType().Name);
+            Player.GetAnimationState().OnAnimationFrame(frame);
         }
-
-        Player.SetAnimationState(state.GetNextState());
-        SetSprite(spriteName);
+        UpdateSprite();
     }
 
     protected void SetSprite(string spriteName)
