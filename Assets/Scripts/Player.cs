@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public abstract class Player : MonoBehaviour
 {
@@ -50,5 +51,20 @@ public abstract class Player : MonoBehaviour
         
         var hit = Physics2D.BoxCast(groundChecker.position, new Vector2(_collider.size.x, maxGroundDistance), 0, Vector2.down, maxGroundDistance, _jumpable);
         return hit.collider != null && hit.collider.gameObject != gameObject;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Check if the object is on the 'Win' layer
+        if (other.gameObject.layer == LayerMask.NameToLayer("Win"))
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.buildIndex == 0) // level 1
+            {UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/Level2");}
+            if (currentScene.buildIndex == 2) // level 2
+            {UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/Level3");}
+            if (currentScene.buildIndex == 3) // level 3
+            {UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/Win");}
+        }
     }
 }
