@@ -19,7 +19,6 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     public class SaveData
     {
-        public double[] levelTimes = {9999.99, 9999.99, 9999.99};
         public int currentLevel = 1;
     }
 
