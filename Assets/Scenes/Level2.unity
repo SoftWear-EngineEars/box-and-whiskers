@@ -3268,6 +3268,7 @@ GameObject:
   - component: {fileID: 2117949449}
   - component: {fileID: 2117949452}
   - component: {fileID: 2117949451}
+  - component: {fileID: 2117949453}
   m_Layer: 0
   m_Name: Singleton
   m_TagString: Untagged
@@ -3326,6 +3327,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cacacc04a114ac2831fb1bfe94b1945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyCollectEventNotifier
+--- !u!114 &2117949453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117949448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b3551862ac55141a8f3b1a40840f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::AnimationFrameManager
+  frame: 0
+  fps: 10
 --- !u!1001 &685359618033669072
 PrefabInstance:
   m_ObjectHideFlags: 0

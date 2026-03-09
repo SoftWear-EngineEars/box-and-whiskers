@@ -2,28 +2,28 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class AnimationFrameManager : MonoBehaviour, AnimationFrameSubject
+public class AnimationFrameManager : MonoBehaviour, IAnimationFrameSubject
 {
-    private List<AnimationFrameObserver> observers = new List<AnimationFrameObserver>();
+    private readonly List<IAnimationFrameObserver> _observers = new List<IAnimationFrameObserver>();
     [SerializeField] private int frame = 0;
-    [SerializeField] private int fps = 4;
+    [SerializeField] private int fps = 8;
 
     public void SendMessage()
     {
-        foreach (AnimationFrameObserver observer in observers)
+        foreach (IAnimationFrameObserver observer in _observers)
         {
             observer.OnAnimationFrame(frame);
         }
     }
 
-    public void SubscribeToAnimationFrame(AnimationFrameObserver observer)
+    public void SubscribeToAnimationFrame(IAnimationFrameObserver observer)
     {
-        observers.Add(observer);
+        _observers.Add(observer);
     }
 
-    public void UnsubscribeFromAnimationFrame(AnimationFrameObserver observer)
+    public void UnsubscribeFromAnimationFrame(IAnimationFrameObserver observer)
     {
-        observers.Remove(observer);
+        _observers.Remove(observer);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

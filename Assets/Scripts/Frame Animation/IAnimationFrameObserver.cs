@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface AnimationFrameObserver
+public interface IAnimationFrameObserver
 {
     public void OnAnimationFrame(int frame);
 }
