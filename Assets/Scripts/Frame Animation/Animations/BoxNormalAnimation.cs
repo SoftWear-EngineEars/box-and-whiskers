@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BoxNormalAnimation : SpriteAnimation
 {
-    public BoxNormalAnimation(Player player, int frameNumber) : base("box_normal", player, frameNumber)
+    public BoxNormalAnimation(Player player, int frameNumber) : base("box_front", player, frameNumber)
     {
     }
 

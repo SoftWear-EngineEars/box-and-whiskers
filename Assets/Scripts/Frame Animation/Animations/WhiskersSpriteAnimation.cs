@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public abstract class WhiskersSpriteAnimation : SpriteAnimation
@@ -13,8 +14,10 @@ public abstract class WhiskersSpriteAnimation : SpriteAnimation
     
     public override SpriteAnimation GetNextAnimation()
     {
+        UnityEngine.Debug.Log("Velocity: " + rigidbody.linearVelocity);
         if (rigidbody.linearVelocity.y < 0)
         {
+            UnityEngine.Debug.Log("Falling");
             HandleFall();
         }
         else if (rigidbody.linearVelocity.y > 0)

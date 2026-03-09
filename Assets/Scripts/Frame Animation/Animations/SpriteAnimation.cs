@@ -32,6 +32,7 @@ public abstract class SpriteAnimation
     public void OnAnimationFrame(int frame)
     {
         currentFrame = frame % _frameCount;
+        GetNextAnimation();
     }
 
     public string GetSprite()

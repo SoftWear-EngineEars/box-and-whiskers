@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObserver
@@ -12,7 +13,11 @@ public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObs
         _rigidbody = player.GetComponent<Rigidbody2D>();
         _renderer = player.GetComponent<SpriteRenderer>();
 
-        GameObject.Find("Singleton").GetComponent<AnimationFrameManager>().SubscribeToAnimationFrame(this);
+        var animationFrameManager = FindObjectOfType<AnimationFrameManager>();
+        if (animationFrameManager != null)
+        {
+            animationFrameManager.SubscribeToAnimationFrame(this);
+        }
     }
 
     public virtual void HandleLeft()
@@ -43,19 +48,43 @@ public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObs
 
         state.OnAnimationFrame(frame);
         string spriteName = state.GetSprite();
+
+        if (state is WhiskersMergeAnimation)
+        {
+            UnityEngine.Debug.Log("Handling merge animation frame");
+            UnityEngine.Debug.Log("Next state: " + state.GetNextState().GetType().Name);
+        }
+
+        Player.SetAnimationState(state.GetNextState());
         SetSprite(spriteName);
     }
 
     protected void SetSprite(string spriteName)
     {
-        Sprite sprite = Resources.Load<Sprite>(spriteName);
-        if (sprite != null)
+        // Extract the base name (e.g., 'whiskers_falling') from the spriteName
+        int lastUnderscoreIndex = spriteName.LastIndexOf('_');
+        string baseName = spriteName.Substring(0, lastUnderscoreIndex);
+
+        // Load all sprites from the base sprite sheet
+        Sprite[] sprites = Resources.LoadAll<Sprite>($"Sprites/{baseName}");
+
+        if (sprites.Length > 0)
         {
-            _renderer.sprite = sprite;
+            // Find the specific sprite by name (e.g., 'whiskers_falling_0')
+            Sprite sprite = System.Array.Find(sprites, s => s.name == spriteName);
+
+            if (sprite != null)
+            {
+                _renderer.sprite = sprite;
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning($"Sprite '{spriteName}' not found in the sprite sheet '{baseName}.png'.");
+            }
         }
         else
         {
-            Debug.LogWarning($"Sprite '{spriteName}' not found in Resources.");
+            UnityEngine.Debug.LogWarning($"No sprites found in the sprite sheet '{baseName}.png'.");
         }
     }
 }
