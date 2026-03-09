@@ -33,7 +33,8 @@ public class WhiskersAnimationHandler : PlayerAnimationHandler, ISubscriber<Comb
         UnityEngine.Debug.Log("Animation state: " + Player.GetAnimationState().GetType().Name);
         if (Player.GetAnimationState() is WhiskersMergeAnimation)
         {
-            float movementSpeed = ((Whiskers)Player).EnterBox().GetMovementSpeed();
+            // Get velocity of whiskers's parent
+            float movementSpeed = ((Whiskers)Player).EnterBox().GetComponent<Rigidbody2D>().linearVelocity.x;
             UnityEngine.Debug.Log("Whiskers is merging. Movement speed: " + movementSpeed);
             if (movementSpeed < 0)
             {
