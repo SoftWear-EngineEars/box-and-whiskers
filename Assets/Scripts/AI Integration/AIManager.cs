@@ -16,7 +16,9 @@ namespace AI_Integration
             "The cat has just collected the key necessary to complete the level."
         };
 
-        private readonly GroqAIController _controller = new();
+        private IGroqAIController _controller = new GroqAIController();
+        
+        public void SetController(IGroqAIController controller) => _controller = controller;
 
         public Task<string> Request(DialogueType type)
         {
