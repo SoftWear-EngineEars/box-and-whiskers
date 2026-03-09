@@ -20,7 +20,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Restart()
-    {
+    { 
+        Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
