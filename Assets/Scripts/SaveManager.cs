@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : MonoBehaviour, IUsesDataCenter
 {
 
     private IDataCenter _DataCenter;
@@ -19,7 +19,6 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     public class SaveData
     {
-        public double[] levelTimes = {9999.99, 9999.99, 9999.99};
         public int currentLevel = 1;
     }
 

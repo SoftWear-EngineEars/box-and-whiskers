@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonActions : MonoBehaviour, IUsesDataCenter
+public class TitleButtonActions : MonoBehaviour, IUsesDataCenter
 {
     private IDataCenter _DataCenter;
+    [SerializeField] private SaveManager saveManager;
 
     public void SetDependency(IDataCenter DataCenter)
     {
@@ -18,10 +19,13 @@ public class ButtonActions : MonoBehaviour, IUsesDataCenter
     public void LoadLevel()
     {
         SceneManager.LoadScene("Scenes/Level1"); // Should change with the addition of other levels
+        Time.timeScale = 1;
     }
 
     public void LoadFromSave()
     {
-        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel)); // Should change with the addition of other levels
+        saveManager.Load();
+        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel));
+        Time.timeScale = 1;
     }
 }
