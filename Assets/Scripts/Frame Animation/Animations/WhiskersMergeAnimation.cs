@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WhiskersMergeAnimation : WhiskersSpriteAnimation
 {
-    public WhiskersMergeAnimation(Player player, int frameNumber) : base("whiskers_merge", player, frameNumber)
+    public WhiskersMergeAnimation(Player player, int frameNumber) : base("whiskers_in_box", player, frameNumber)
     {
         nextState = this;
     }

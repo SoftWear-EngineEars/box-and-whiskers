@@ -485,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4100555369220536101, guid: f63768dc83b482b48aeeddfb13f81c45, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4100555369220536101, guid: f63768dc83b482b48aeeddfb13f81c45, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1680,6 +1680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationFrameManager
   frame: 0
+  fps: 10
 --- !u!1001 &685359618033669072
 PrefabInstance:
   m_ObjectHideFlags: 0
