@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Box : Player, ISubscriber<CombinationEvent>
 {
-    public INotifier<CombinationEvent> Notifier { get; set; } 
-
     protected override void Start()
     {
         base.Start();
@@ -12,8 +10,6 @@ public class Box : Player, ISubscriber<CombinationEvent>
         UpAction = InputSystem.actions.FindAction("BoxUp");
         HorizontalAction = InputSystem.actions.FindAction("BoxL/R");
 
-        Notifier.RegisterSubscriber(this);
-        
         SetState(new BoxNormalState(this));
 
         var animationHandler = gameObject.AddComponent<BoxAnimationHandler>();
@@ -26,5 +22,10 @@ public class Box : Player, ISubscriber<CombinationEvent>
     public void ReceiveEvent(CombinationEvent message)
     {
         ((BoxState)State).HandleCombinationEvent(message);
+    }
+
+    public void SetDependency(INotifier<CombinationEvent> dependency)
+    {
+        dependency.RegisterSubscriber(this);
     }
 }

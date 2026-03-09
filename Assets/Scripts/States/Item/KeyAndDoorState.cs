@@ -1,7 +1,7 @@
-﻿public abstract class KeyAndDoorState : ItemState
+﻿public abstract class KeyAndDoorState : ItemState, IKeyAndDoorState
 {
     protected KeyAndDoor KeyAndDoor;
-    public KeyAndDoorState(KeyAndDoor keyAndDoor) : base(keyAndDoor)
+    public KeyAndDoorState(KeyAndDoor keyAndDoor)
     {
         KeyAndDoor = keyAndDoor;
     }
