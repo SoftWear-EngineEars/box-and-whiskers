@@ -986,10 +986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667fa1db9f6563440baa40004dcd1941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataCenter
-  levelTimes:
-  - 0
-  - 0
-  - 0
   currentLevel: 1
 --- !u!114 &770924034
 MonoBehaviour:
@@ -2027,6 +2023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffd343e0a27d6243a1b53038d8b2575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonActions
+  saveManager: {fileID: 770924032}
 --- !u!1 &1896913168
 GameObject:
   m_ObjectHideFlags: 0

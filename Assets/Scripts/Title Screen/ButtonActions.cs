@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class ButtonActions : MonoBehaviour, IUsesDataCenter
 {
     private IDataCenter _DataCenter;
+    [SerializeField] private SaveManager saveManager;
 
     public void SetDependency(IDataCenter DataCenter)
     {
@@ -22,7 +23,7 @@ public class ButtonActions : MonoBehaviour, IUsesDataCenter
 
     public void LoadFromSave()
     {
-        _DataCenter.LoadData();
+        saveManager.Load();
         SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel));
     }
 }
