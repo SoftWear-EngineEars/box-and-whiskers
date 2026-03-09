@@ -19,11 +19,13 @@ public class TitleButtonActions : MonoBehaviour, IUsesDataCenter
     public void LoadLevel()
     {
         SceneManager.LoadScene("Scenes/Level1"); // Should change with the addition of other levels
+        Time.timeScale = 1;
     }
 
     public void LoadFromSave()
     {
         saveManager.Load();
         SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel));
+        Time.timeScale = 1;
     }
 }
