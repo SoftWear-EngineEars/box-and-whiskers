@@ -22,6 +22,7 @@ public class ButtonActions : MonoBehaviour, IUsesDataCenter
 
     public void LoadFromSave()
     {
-        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel)); // Should change with the addition of other levels
+        _DataCenter.LoadData();
+        SceneManager.LoadScene("Scenes/Level"+(_DataCenter.CurrentLevel));
     }
 }
