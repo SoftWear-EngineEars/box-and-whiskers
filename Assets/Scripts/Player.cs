@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public abstract class Player : MonoBehaviour
 {
     protected PlayerState State { get; private set; }
+    protected SpriteAnimation AnimationState { get; private set; }
+    protected PlayerAnimationHandler AnimationHandler { get; private set; }
 
     public InputAction UpAction { get; protected set; }
     public InputAction HorizontalAction { get; protected set;  }
@@ -32,6 +34,21 @@ public abstract class Player : MonoBehaviour
     {
         State = state;
         state.Start();
+    }
+
+    public SpriteAnimation GetAnimationState()
+    {
+        return AnimationState;
+    }
+
+    public void SetAnimationHandler(PlayerAnimationHandler handler)
+    {
+        AnimationHandler = handler;
+    }
+
+    public void SetAnimationState(SpriteAnimation animation)
+    {
+        AnimationState = animation;
     }
 
     public float GetJumpStrength()

@@ -16,6 +16,12 @@ public class Whiskers : Player
         ShiftAction = InputSystem.actions.FindAction("WhiskerShift");
         
         SetState(new WhiskerNormalState(this));
+        
+        var animationHandler = gameObject.AddComponent<WhiskersAnimationHandler>();
+        animationHandler.Initialize(this);
+        SetAnimationHandler(animationHandler);
+
+        SetAnimationState(new WhiskersIdleAnimation(this, 0));
     }
     public Box EnterBox()
     {
@@ -26,4 +32,3 @@ public class Whiskers : Player
         return box;
     }
 }
-    

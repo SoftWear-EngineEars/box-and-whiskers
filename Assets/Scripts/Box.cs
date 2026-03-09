@@ -15,6 +15,12 @@ public class Box : Player, ISubscriber<CombinationEvent>
         Notifier.RegisterSubscriber(this);
         
         SetState(new BoxNormalState(this));
+
+        var animationHandler = gameObject.AddComponent<BoxAnimationHandler>();
+        animationHandler.Initialize(this);
+        SetAnimationHandler(animationHandler);
+
+        SetAnimationState(new BoxNormalAnimation(this, 0));
     }
 
     public void ReceiveEvent(CombinationEvent message)
