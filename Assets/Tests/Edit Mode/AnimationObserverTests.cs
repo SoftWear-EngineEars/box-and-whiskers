@@ -1,7 +1,7 @@
 // Tests by Pinak Unawane
 
 /*
-    I chose to make this test suite to test observer pattern implementation of frame animation.
+    I chose to make this test suite to test the observer pattern implementation of frame animation.
     Without delving too deep into direct class uses, this test suite is meant to check that
     frame updates are broadcasted properly. For this, I added subscribe, unsubscribe, and 
     multi-observer tests. I also tested PlayerAnimationHandler to initialize and properly subscribe
