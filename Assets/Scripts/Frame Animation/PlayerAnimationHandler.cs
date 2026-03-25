@@ -9,14 +9,19 @@ public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObs
 
     public void Initialize(Player player)
     {
+        var animationFrameManager = FindObjectOfType<AnimationFrameManager>();
+        Initialize(player, animationFrameManager);
+    }
+
+    public void Initialize(Player player, IAnimationFrameSubject animationFrameSubject)
+    {
         Player = player;
         _rigidbody = player.GetComponent<Rigidbody2D>();
         _renderer = player.GetComponent<SpriteRenderer>();
 
-        var animationFrameManager = FindObjectOfType<AnimationFrameManager>();
-        if (animationFrameManager != null)
+        if (animationFrameSubject != null)
         {
-            animationFrameManager.SubscribeToAnimationFrame(this);
+            animationFrameSubject.SubscribeToAnimationFrame(this);
         }
     }
 
@@ -65,26 +70,15 @@ public abstract class PlayerAnimationHandler : MonoBehaviour, IAnimationFrameObs
 
     protected void SetSprite(string spriteName)
     {
-        // Extract the base name (e.g., 'whiskers_falling') from the spriteName
         int lastUnderscoreIndex = spriteName.LastIndexOf('_');
         string baseName = spriteName.Substring(0, lastUnderscoreIndex);
 
-        // Load all sprites from the base sprite sheet
         Sprite[] sprites = Resources.LoadAll<Sprite>($"Sprites/{baseName}");
 
         if (sprites.Length > 0)
         {
-            // Find the specific sprite by name (e.g., 'whiskers_falling_0')
             Sprite sprite = System.Array.Find(sprites, s => s.name == spriteName);
-
-            if (sprite != null)
-            {
-                _renderer.sprite = sprite;
-            }
-            else
-            {
-                UnityEngine.Debug.LogWarning($"Sprite '{spriteName}' not found in the sprite sheet '{baseName}.png'.");
-            }
+            _renderer.sprite = sprite;
         }
         else
         {
